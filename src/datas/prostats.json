@@ -1,0 +1,36 @@
+{
+  "proitems": [
+    {
+      "st": [
+        {
+          "acceleration": 77,
+          "sprintSpeed": 79
+        }
+      ],
+      "cm": [
+        {
+          "acceleration": 74,
+          "sprintSpeed": 75
+        }
+      ],
+      "rw": [
+        {
+          "acceleration": 83,
+          "sprintSpeed": 81
+        }
+      ],
+      "lw": [
+        {
+          "acceleration": 83,
+          "sprintSpeed": 81
+        }
+      ],
+      "cam": [
+        {
+          "acceleration": 75,
+          "sprintSpeed": 78
+        }
+      ]
+    }
+  ]
+}
