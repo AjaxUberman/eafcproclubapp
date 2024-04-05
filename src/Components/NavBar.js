@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import logo from "../images/Firefly green footbal logo png 49312.jpg";
 import { Link, useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import items from "../datas/players.json";
+import { setPlayer } from "../features/counter/counterSlice";
 
 const NavBar = () => {
   const location = useLocation();
+  const dispatch = useDispatch();
   const players = items.items;
   const [filtered, setFiltered] = useState([]);
 
@@ -20,7 +24,12 @@ const NavBar = () => {
       : [];
     setFiltered(filtered);
   };
-  console.log(filtered);
+
+  /* SearchClick */
+  const clickHandler = (selectedItem) => {
+    dispatch(setPlayer(selectedItem));
+    console.log(selectedItem);
+  };
 
   return (
     <div className="flex justify-between w-full bg-dark-theme items-center relative h-24 ">
@@ -40,7 +49,7 @@ const NavBar = () => {
       </div>
       <div>
         <div>
-          {location.pathname === "/player" ? (
+          {location.pathname === "/zart" ? (
             ""
           ) : (
             <div className="">
@@ -58,17 +67,22 @@ const NavBar = () => {
                 }`}
               >
                 {filtered.map((i) => (
-                  <div className="flex items-center ring-1 ring-neon-yesil relative">
-                    <img
-                      src={i.avatarUrl}
-                      className="w-8 h-8 absolute bottom-0 left-2"
-                    />
-                    <h1 className="text-white py-2 translate-x-12">
-                      {(i.firstName + " " + i.lastName).length > 15
-                        ? i.firstName
-                        : i.firstName + " " + i.lastName}
-                    </h1>
-                  </div>
+                  <Link
+                    to="/player"
+                    className="flex items-center ring-1 ring-neon-yesil relative hover:shadow-neon-box hover:bg-neon-yesil hover:bg-opacity-35 transition duration-200 ease-in-out"
+                  >
+                    <button onClick={() => clickHandler(i)} className="">
+                      <img
+                        src={i.avatarUrl}
+                        className="w-8 h-8 absolute bottom-0 left-2"
+                      />
+                      <h1 className="text-white py-2 translate-x-12">
+                        {(i.firstName + " " + i.lastName).length > 15
+                          ? i.firstName
+                          : i.firstName + " " + i.lastName}
+                      </h1>
+                    </button>
+                  </Link>
                 ))}
               </div>
             </div>

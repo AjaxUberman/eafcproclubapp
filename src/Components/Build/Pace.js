@@ -6,6 +6,7 @@ import { FaBackward } from "react-icons/fa6";
 import { FaBoltLightning } from "react-icons/fa6";
 import { CiBatteryCharging } from "react-icons/ci";
 import Stats from "./Stats";
+import { motion } from "framer-motion";
 
 const Pace = () => {
   const player = useSelector((state) => state.player.player);
@@ -28,11 +29,12 @@ const Pace = () => {
     }
   };
 
-  console.log(actItem);
-
-  console.log(actItem);
   return (
-    <div className="grid grid-cols-6 pt-10">
+    <motion.div
+      className="grid grid-cols-6 pt-10"
+      initial={{ y: 50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+    >
       {/* Tree Side */}
       <div className="flex  pl-10 col-span-3 justify-center">
         {/* Left Side */}
@@ -221,7 +223,7 @@ const Pace = () => {
       <div className="col-span-3">
         <Stats acc={acc} speed={speed} point={totPoints} />
       </div>
-    </div>
+    </motion.div>
   );
 };
 

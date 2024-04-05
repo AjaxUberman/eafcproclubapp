@@ -55,8 +55,6 @@ const Stats = ({ acc, speed, point }) => {
     }
   };
 
-  console.log(err);
-
   return (
     <div className="flex flex-col gap-10 ">
       <div className="grid grid-cols-5 gap-">

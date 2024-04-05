@@ -4,6 +4,8 @@ import items from "../datas/players.json";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setPlayer } from "../features/counter/counterSlice";
+import { motion } from "framer-motion";
+
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -19,7 +21,11 @@ const HomePage = () => {
 
   return (
     <div className="h-full  bg-dark-theme-2 flex justify-center ">
-      <div className="w-2/3">
+      <motion.div
+        className="w-2/3"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
         <h1 className="text-white font-bold text-3xl py-5">
           Top 100 Players Build
         </h1>
@@ -33,7 +39,7 @@ const HomePage = () => {
               </div>
             ))}
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 };

@@ -4,6 +4,7 @@ import NavBar from "./NavBar";
 import { FaStar } from "react-icons/fa6";
 import Build from "./Build";
 import App from "../App";
+import { motion } from "framer-motion";
 
 const Player = () => {
   const player = useSelector((state) => state.player.player);
@@ -16,7 +17,11 @@ const Player = () => {
         <div>
           <NavBar />
           <div className="flex bg-dark-theme-2 h-full ">
-            <div className="grid grid-cols-8 justify-center gap-6 w-full h-full">
+            <motion.div
+              className="grid grid-cols-8 justify-center gap-6 w-full h-full"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
               {/* Player Info*/}
               <div className=" bg-dark-theme flex flex-col gap-4 items-center py-6 px-2 col-span-2 ">
                 <img src={player.shieldUrl} className="w-24 h-36 " />
@@ -99,7 +104,7 @@ const Player = () => {
                 </div>
                 <Build player={player} />
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       )}
