@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import { TiThMenu } from "react-icons/ti";
 import logo from "../images/Firefly green footbal logo png 49312.jpg";
 import { Link, useLocation } from "react-router-dom";
+import items from "../datas/players.json";
 
 const NavBar = () => {
   const location = useLocation();
+  const players = items.items;
+  const [filtered, setFiltered] = useState([]);
+
+  const searchHandler = (e) => {
+    const input = e.target.value.toLowerCase();
+    const filtered = input
+      ? players.filter(
+          (player) =>
+            player.firstName.toLowerCase().includes(input) ||
+            player.lastName.toLowerCase().includes(input)
+        )
+      : [];
+    setFiltered(filtered);
+  };
+  console.log(filtered);
+
   return (
-    <div className="flex justify-between w-full bg-dark-theme items-center ">
+    <div className="flex justify-between w-full bg-dark-theme items-center relative h-24 ">
       <div className="flex gap-10 py-6 pl-16  items-center">
         <img src={logo} className="w-8 h-8 rounded-full" />
         <Link to="/">
@@ -26,10 +43,35 @@ const NavBar = () => {
           {location.pathname === "/player" ? (
             ""
           ) : (
-            <input
-              placeholder="Search Player "
-              className="px-4 py-2 rounded-full bg-transparent ring ring-neon-yesil focus:outline-none hover:shadow-neon-box transition duration-200 ease-in text-white font-semibold"
-            />
+            <div className="">
+              <input
+                placeholder="Search Player "
+                className="px-4 py-2 rounded-full bg-transparent ring ring-neon-yesil focus:outline-none hover:shadow-neon-box transition duration-200 ease-in text-white font-semibold relative top-12 z-10"
+                onChange={searchHandler}
+              />
+              {/* Search Menu */}
+              <div
+                className={`overflow-y-scroll scrollbar scrollbar-track-error-green scrollbar-thumb-active-yesil  h-24  flex flex-col  bg-error-green bg-opacity-30 w-60 relative  transition duration-300 ease-in translate-x-64 ring-1 ring-neon-yesil ${
+                  filtered.length < 1
+                    ? " opacity-0 translate-y-15 "
+                    : "opacity-100"
+                }`}
+              >
+                {filtered.map((i) => (
+                  <div className="flex items-center ring-1 ring-neon-yesil relative">
+                    <img
+                      src={i.avatarUrl}
+                      className="w-8 h-8 absolute bottom-0 left-2"
+                    />
+                    <h1 className="text-white py-2 translate-x-12">
+                      {(i.firstName + " " + i.lastName).length > 15
+                        ? i.firstName
+                        : i.firstName + " " + i.lastName}
+                    </h1>
+                  </div>
+                ))}
+              </div>
+            </div>
           )}
         </div>
       </div>
