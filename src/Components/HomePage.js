@@ -51,7 +51,7 @@ const HomePage = () => {
             ))}
           <button
             onClick={itemHandler}
-            className="rounded-full bg-neon-yesil md:py-4 md:px-2 text-white font-bold shadow-md col-span-2 md:col-span-2 md:col-start-3 md:w-40 md:h-12 py-2 px-1 text-sm md:text-l hover:bg-active-yesil  hover:scale-105 transition duration-200 ease-in"
+            className="rounded-full bg-neon-yesil md:py-4 md:px-2 text-white font-bold col-span-2 md:col-span-2 md:col-start-3 md:w-40 md:h-12 py-2 px-1 text-sm md:text-l hover:bg-active-yesil  hover:scale-105 transition duration-200 ease-in"
           >
             Show More
           </button>
