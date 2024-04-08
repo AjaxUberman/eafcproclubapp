@@ -26,7 +26,7 @@ const HomePage = () => {
   return (
     <div
       className={`bg-dark-theme-2 flex justify-center h-full sm:h-screen ${
-        activeBtn !== 0 ? "h-full" : ""
+        activeBtn !== 0 ? "sm:h-full" : ""
       }`}
     >
       <motion.div
