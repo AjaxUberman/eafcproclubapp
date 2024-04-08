@@ -31,12 +31,12 @@ const Pace = () => {
 
   return (
     <motion.div
-      className="grid grid-cols-6 pt-10"
+      className="md:grid md:grid-cols-6 pt-10 flex flex-col "
       initial={{ y: 50, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
     >
       {/* Tree Side */}
-      <div className="flex  pl-10 col-span-3 justify-center">
+      <div className="flex  pl-10 col-span-3 justify-center ">
         {/* Left Side */}
         <div className="flex flex-col w-40">
           <button

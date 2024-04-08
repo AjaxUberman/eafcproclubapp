@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import NavBar from "./NavBar";
 import { FaStar } from "react-icons/fa6";
 import Build from "./Build";
 import App from "../App";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "react-responsive";
+import { IoIosSwitch } from "react-icons/io";
 
 const Player = () => {
   const player = useSelector((state) => state.player.player);
-  console.log(player);
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 850px)" });
+  const isWideScreen = useMediaQuery({ query: "(max-width: 1250px)" });
+
+  const filtered = useSelector((state) => state.player.search);
+  const [active, setActive] = useState(false);
+
+  const changeHandler = () => {
+    setActive(!active);
+  };
+
+  console.log(filtered);
   return (
     <>
       {!player ? (
@@ -16,14 +28,35 @@ const Player = () => {
       ) : (
         <div>
           <NavBar />
-          <div className="flex bg-dark-theme-2 h-full ">
+          <div className="flex bg-dark-theme-2 h-full pb-10">
             <motion.div
-              className="grid grid-cols-8 justify-center gap-6 w-full h-full"
+              className="grid md:grid-cols-8 grid-cols-8 justify-center gap-6 w-full h-full"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
               {/* Player Info*/}
-              <div className=" bg-dark-theme flex flex-col gap-4 items-center py-6 px-2 col-span-2 ">
+              {isTabletOrMobile ? (
+                <div className="p-4  h-10">
+                  <button
+                    className={`py-4 px-4 text-white rounded-full hover:bg-gradient-to-r hover:from-yellow-200 hover:to-green-500  ${
+                      !active
+                        ? "bg-gradient-to-r from-yellow-200 to-green-500"
+                        : "bg-gradient-to-r from-teal-400 to-gray-800"
+                    }`}
+                    onClick={changeHandler}
+                  >
+                    <IoIosSwitch />
+                  </button>
+                </div>
+              ) : (
+                ""
+              )}
+
+              <div
+                className={`md:bg-dark-theme flex flex-col gap-4 items-center md:py-6  px-2 md:col-span-2 ${
+                  active ? isTabletOrMobile && "hidden" : "col-span-8"
+                }`}
+              >
                 <img src={player.shieldUrl} className="w-24 h-36 " />
                 <h1 className="text-2xl font-bold text-white text-center">
                   {player.firstName} {player.lastName}
@@ -81,21 +114,25 @@ const Player = () => {
               </div>
 
               {/* Player Stats */}
-              <div className="flex flex-col pt-4 col-span-6 ">
+              <div
+                className={`flex flex-col pt-4  md:col-span-6 ${
+                  active ? "col-span-8" : isTabletOrMobile && "hidden"
+                }`}
+              >
                 <div className="flex  flex-col items-center gap-4">
-                  <h1 className="text-white font-bold flex gap-1 text-4xl ">
+                  <h1 className="text-white font-bold flex gap-1 md:text-4xl text-l">
                     Position :
                     <h1 className="text-neon-yesil ">
                       {player.position.shortLabel}
                     </h1>
                   </h1>
                   <div className="flex gap-10 ">
-                    <h1 className="text-white font-bold flex gap-1 text-3xl ">
+                    <h1 className="text-white font-bold flex gap-1 md:text-3xl text-sm">
                       Height :
                       <span className="text-neon-yesil ">{player.height}</span>
                       cm
                     </h1>
-                    <h1 className="text-white font-bold flex gap-1 text-3xl ">
+                    <h1 className="text-white font-bold flex gap-1 md:text-3xl text-sm">
                       Weight :
                       <span className="text-neon-yesil ">{player.weight}</span>
                       kg

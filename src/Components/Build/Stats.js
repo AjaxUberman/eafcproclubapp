@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import prostats from "../../datas/prostats.json";
 import { FaCaretDown } from "react-icons/fa";
@@ -29,12 +29,17 @@ const Stats = ({ acc, speed, point }) => {
   };
 
   const buildHandler = (value) => {
-    setActBuild(value);
+    value ? setActBuild(value) : setActBuild(actBuild);
   };
+  useEffect(() => {
+    setAccFinal(proitems.acceleration);
+  }, [acc, proitems.acceleration]);
+
+  console.log(proitems);
 
   const heightHandler = (e) => {
     const value = e.target.value.replace(/[^0-9]/g, "");
-    if (value >= 150 && value <= 220) {
+    if (value && value >= 150 && value <= 220) {
       setHeight(value);
       setErr(false);
       if (value >= 150 && value <= 170) {
@@ -52,12 +57,16 @@ const Stats = ({ acc, speed, point }) => {
       }
     } else {
       setErr(true);
+      setAccFinal(proitems.acceleration);
+      setSprFinal(proitems.sprintSpeed);
     }
   };
 
+  console.log(proitems.acceleration);
+
   return (
-    <div className="flex flex-col gap-10 ">
-      <div className="grid grid-cols-5 gap-">
+    <div className="flex flex-col gap-10 py-8 md:py-0 px-5 md:px-0 ">
+      <div className="grid grid-cols-5 md:gap-4 gap-32">
         {/* Position */}
         <div className="flex flex-col gap-2 col-span-1">
           <div className="flex flex-col gap-1">
