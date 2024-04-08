@@ -31,7 +31,7 @@ const Player = () => {
         <div>
           {isTabletOrMobile && actMenu ? <MobileMenu /> : ""}
           <NavBar />
-          <div className="flex bg-dark-theme-2 h-full md:pb-0 pb-10">
+          <div className="flex bg-dark-theme-2 h-screen md:pb-0 pb-10">
             <motion.div
               className="grid md:grid-cols-8 grid-cols-8 justify-center md:gap-6 gap-5 w-full h-full"
               initial={{ opacity: 0 }}
