@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { IoIosSwitch } from "react-icons/io";
 import { FaCaretLeft } from "react-icons/fa";
-
+import MobileMenu from "../MobileMenu";
 const Player = () => {
   const player = useSelector((state) => state.player.player);
   const isTabletOrMobile = useMediaQuery({ query: "(max-width: 850px)" });
@@ -16,6 +16,7 @@ const Player = () => {
 
   const filtered = useSelector((state) => state.player.search);
   const [active, setActive] = useState(false);
+  const actMenu = useSelector((state) => state.player.active);
 
   const changeHandler = () => {
     setActive(!active);
@@ -28,6 +29,7 @@ const Player = () => {
         <App />
       ) : (
         <div>
+          {isTabletOrMobile && actMenu ? <MobileMenu /> : ""}
           <NavBar />
           <div className="flex bg-dark-theme-2 h-full md:pb-0 pb-10">
             <motion.div
