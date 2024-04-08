@@ -7,6 +7,7 @@ import App from "../App";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
 import { IoIosSwitch } from "react-icons/io";
+import { FaCaretLeft } from "react-icons/fa";
 
 const Player = () => {
   const player = useSelector((state) => state.player.player);
@@ -28,17 +29,17 @@ const Player = () => {
       ) : (
         <div>
           <NavBar />
-          <div className="flex bg-dark-theme-2 h-full pb-10">
+          <div className="flex bg-dark-theme-2 h-full md:pb-0 pb-10">
             <motion.div
-              className="grid md:grid-cols-8 grid-cols-8 justify-center gap-6 w-full h-full"
+              className="grid md:grid-cols-8 grid-cols-8 justify-center md:gap-6 gap-5 w-full h-full"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
             >
               {/* Player Info*/}
               {isTabletOrMobile ? (
-                <div className="p-4  h-10">
+                <div className="pl-4 h-10 flex items-center pt-10 gap-2 ">
                   <button
-                    className={`py-4 px-4 text-white rounded-full hover:bg-gradient-to-r hover:from-yellow-200 hover:to-green-500  ${
+                    className={`py-4 px-4 w-12 h-12 text-white rounded-full hover:bg-gradient-to-r hover:from-yellow-200 hover:to-green-500  ${
                       !active
                         ? "bg-gradient-to-r from-yellow-200 to-green-500"
                         : "bg-gradient-to-r from-teal-400 to-gray-800"
@@ -47,6 +48,11 @@ const Player = () => {
                   >
                     <IoIosSwitch />
                   </button>
+                  <div className="flex text-white items-center">
+                    <FaCaretLeft />
+
+                    <h1 className="whitespace-nowrap">Change View</h1>
+                  </div>
                 </div>
               ) : (
                 ""

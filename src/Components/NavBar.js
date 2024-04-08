@@ -8,6 +8,7 @@ import items from "../datas/players.json";
 import { setPlayer } from "../features/counter/counterSlice";
 import { CiMenuKebab } from "react-icons/ci";
 import { setSearch } from "../features/counter/counterSlice";
+import { setActive } from "../features/counter/counterSlice";
 
 const NavBar = () => {
   const location = useLocation();
@@ -35,12 +36,19 @@ const NavBar = () => {
     setFiltered([]);
   };
 
+  const menuHandler = () => {
+    dispatch(setActive(true));
+  };
+
   return (
     <>
       {isTabletOrMobile ? (
         <div className="bg-dark-theme text-white px-4 py-2 h-16 flex justify-between gap-10 ">
-          <div>
-            <button className="text-3xl bg-dark-theme-2 rounded-full p-2 hover:bg-gradient-to-r from-slate-500 to-slate-800 transition duration-100 ease-in">
+          <div className="">
+            <button
+              className="text-3xl bg-dark-theme-2 rounded-full p-2 hover:bg-gradient-to-r from-slate-500 to-slate-800 transition duration-100 ease-in"
+              onClick={menuHandler}
+            >
               <CiMenuKebab />
             </button>
           </div>

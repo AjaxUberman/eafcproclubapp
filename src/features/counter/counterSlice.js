@@ -5,18 +5,22 @@ export const playerSlice = createSlice({
   initialState: {
     player: "",
     search: [],
+    active: false,
   },
   reducers: {
     setPlayer: (state, action) => {
       state.player = action.payload;
     },
     setSearch: (state, action) => {
-      state.Search = action.payload;
+      state.search = action.payload;
+    },
+    setActive: (state, action) => {
+      state.active = action.payload;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setPlayer, setSearch } = playerSlice.actions;
+export const { setPlayer, setSearch, setActive } = playerSlice.actions;
 
 export default playerSlice.reducer;
