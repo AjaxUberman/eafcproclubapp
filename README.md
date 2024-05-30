@@ -2,7 +2,7 @@
 
 ## Screenshots
 
-![Screenshot](https://resimlink.com/YcqUjk05v)
+![Screenshot](https://r.resimlink.com/YcqUjk05v.png?v=9cebcacae72233baf3b4061f0c91d565)
 
 ## Features
 
@@ -41,9 +41,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Baris Kayikci - [YourGitHubUsername](https://github.com/AjaxUberman)
 
-## Acknowledgments
 
-- Hat tip to anyone whose code was used.
-- Inspiration from various Todo applications and gamification concepts.
 
 
